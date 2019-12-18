@@ -1,0 +1,26 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: colors
+  name: colors
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: "colors"
+  template:
+    metadata:
+      labels:
+        app: colors
+    spec:
+      containers:
+      - env:
+        - name: COLOR
+          value: '#44B3C2'
+        image: containers101/color-coded:master
+        imagePullPolicy: Always
+        name: colors
+        ports:
+        - containerPort: 8080
+          protocol: TCP
